@@ -1,5 +1,10 @@
 import './Todo-item.css'
-export type TodoItemProps = {
+
+type TodoItemProps = {
+    item: TodoItemType;
+}
+
+export type TodoItemType = {
     isChecked: Boolean;
     text: string;
     date: string;
@@ -8,8 +13,8 @@ export type TodoItemProps = {
 export function TodoItem(props: TodoItemProps){
     return(
         <div className="todo-item">
-            <div>{props.text}</div>
-            <div>{props.date}</div>
+            <div>{props.item.text}</div>
+            <div>{props.item.date}</div>
         </div>
     )
 }

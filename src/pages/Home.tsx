@@ -1,13 +1,19 @@
 import { useState } from 'react'
-import { TodoItem , TodoItemProps} from '../components/Todo-item/Todo-item'
+import { TodoItem , TodoItemType} from '../components/Todo-item/Todo-item'
 import './home.css'
 
 function Home() {
-  const [ itemsList, setItemsList] = useState<TodoItemProps[]>([]);
-  const [ item, setItem] = useState<TodoItemProps>({} as TodoItemProps);
+  const [ itemsList, setItemsList] = useState<TodoItemType[]>([]);
+  const [ item, setItem] = useState<TodoItemType>({} as TodoItemType);
 
   function newTodoItem(){
-    
+    const newItem = {
+      text: 'Texto',
+      date: 'date',
+      isChecked: false,
+    } as TodoItemType
+    setItemsList(prevState => [ ...prevState, newItem]);
+    console.log('itemsList');
   
   }
 
@@ -20,7 +26,13 @@ function Home() {
           <input type="text" id='new-todo-input' ></input>
           <button className='btn-new-item' onClick={newTodoItem}>Adicionar</button>
         </div>
-        {/* <TodoItem /> */}
+        {
+          itemsList.map((item, index) => (
+            <TodoItem key={index} item={item} />
+            
+          )) 
+        }
+       
       </div>
       
     </div>
