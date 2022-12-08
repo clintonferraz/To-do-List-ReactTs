@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(26, 26, 26);
+    padding: 2rem;
+    margin: 0;
+}
+
+.Home .home-container{
+    width: 55rem;
+    height: calc(100vh - 4rem);
+    background-color: rgb(61, 61, 61);
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+    flex-shrink: none;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.Home .container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Home #new-todo-input{
+    width: 40rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+    margin: 0;
+    height: 3rem;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #E6E6E6;
+    outline: none;
+}
+
+.Home button{
+    flex-shrink: none;
+    width: 9rem;
+    height: 3rem;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    transition: filter 0.5s;
+}
+
+.Home button:hover {
+    filter: brightness(0.7);
+  }
+
