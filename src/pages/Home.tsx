@@ -6,15 +6,26 @@ function Home() {
   const [ itemsList, setItemsList] = useState<TodoItemType[]>([]);
   const [ item, setItem] = useState<TodoItemType>({} as TodoItemType);
 
-  function newTodoItem(){
+  function handleClick(){
+    const myinput = document.querySelector('#new-todo-input') as HTMLInputElement;
+    newTodoItem(myinput.value);
+    myinput.value = '';
+  }
+
+  function newTodoItem(text: string){
     const newItem = {
-      text: 'Texto',
-      date: 'date',
+      text: text,
+      time: new Date().toLocaleTimeString("pt-br", {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        year: 'numeric',
+        day: '2-digit',
+        month: '2-digit'
+      }),
       isChecked: false,
-    } as TodoItemType
+    }
     setItemsList(prevState => [ ...prevState, newItem]);
-    console.log('itemsList');
-  
   }
 
 
@@ -22,19 +33,18 @@ function Home() {
   return (
     <div className="Home">
       <div className='home-container'>
-        <div className='container'>
+        <div className='input-container'>
           <input type="text" id='new-todo-input' ></input>
-          <button className='btn-new-item' onClick={newTodoItem}>Adicionar</button>
+          <button className='btn-new-item' onClick={handleClick}>Adicionar</button>
         </div>
-        {
-          itemsList.map((item, index) => (
-            <TodoItem key={index} item={item} />
-            
-          )) 
-        }
-       
+        <div className="items-container">
+          { 
+            itemsList.map((item, index) => (
+              <TodoItem key={index} index={index} item={item} isTheLast={index == itemsList.length - 1} />
+            ))  
+          }
+        </div>
       </div>
-      
     </div>
   )
 }

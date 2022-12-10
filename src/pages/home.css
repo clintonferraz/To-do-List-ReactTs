@@ -14,11 +14,16 @@ body{
     flex-shrink: none;
     flex-direction: column;
     padding: 2rem;
+    overflow: auto;
 }
 
-.Home .container{
+.Home .input-container{
     display: flex;
     justify-content: space-between;
+}
+.Home .items-container{
+    margin-top: 1rem;
+    overflow: auto;
 }
 
 .Home #new-todo-input{
