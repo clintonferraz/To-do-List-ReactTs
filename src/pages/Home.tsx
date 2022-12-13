@@ -8,7 +8,7 @@ function Home() {
 
   function handleClick(){
     const myinput = document.querySelector('#new-todo-input') as HTMLInputElement;
-    newTodoItem(myinput.value);
+    if (myinput.value != '') newTodoItem(myinput.value);
     myinput.value = '';
   }
 
@@ -28,7 +28,11 @@ function Home() {
     setItemsList(prevState => [ ...prevState, newItem]);
   }
 
-
+  function handleDeleteItem(index: number){
+    let newList = [ ...itemsList];
+    newList.splice(index,1);
+    setItemsList(newList);
+  }
 
   return (
     <div className="Home">
@@ -40,7 +44,13 @@ function Home() {
         <div className="items-container">
           { 
             itemsList.map((item, index) => (
-              <TodoItem key={index} index={index} item={item} isTheLast={index == itemsList.length - 1} />
+              <TodoItem 
+                key={index} 
+                index={index} 
+                deleteItem={(index: number) => handleDeleteItem(index)}
+                item={item} 
+                isTheLast={index == itemsList.length - 1} 
+              />
             ))  
           }
         </div>
